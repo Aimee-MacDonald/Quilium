@@ -28,10 +28,17 @@ app.get("/", function(req, res){
   res.render("index");
 });
 
-app.post("/journal", function(req, res){
-  console.log(req.body.title);
-  console.log(req.body.entry);
+app.get("/entries", function(req, res){
+  Entry.find(function(err, docs){
+    if(err){
+      res.redirect("/");
+    } else {
+      res.render("read", {entries: docs});
+    }
+  });
+});
 
+app.post("/journal", function(req, res){
   var entry = new Entry({
     username: "Aimée",
     title: req.body.title,
@@ -47,5 +54,5 @@ app.post("/journal", function(req, res){
     }
   });
 
-  res.render("read");
+  res.redirect("/entries");
 });
