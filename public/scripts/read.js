@@ -16,10 +16,11 @@ request.onload = function(){
               <h1>` + entries[i].title + `</h1>
               <h1>` + entries[i].date + `</h1>
             </div>
-            <p>` + entries[i].content + `</p>
+            <pre>` + entries[i].content + `</pre>
           </div>
         `;
 
+        console.log(entries[i].content);
         el_container.innerHTML += entry;
       }
     } else {
