@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: pink;
+}
+
+#container {
+  background-color: green;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column;
+}
+
+#container form {
+  display: flex;
+  flex-flow: nowrap column;
+}
+
+#container form input {
+  padding: 10px;
+  margin: 5px;
+}
+
+#container form button {
+  padding: 10px;
+  margin: 20px;
+}

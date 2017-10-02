@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 var Entry = require(path.join(__dirname, "/dbmodels/entry"));
+var User = require(path.join(__dirname, "/dbmodels/user"));
 
 mongoose.connect(process.env.DBURL, {
   useMongoClient: true
@@ -55,4 +56,26 @@ app.post("/journal", function(req, res){
   });
 
   res.redirect("/entries");
+});
+
+app.get("/register", function(req, res){
+  res.render("register");
+});
+
+app.post("/reg", function(req, res){
+  var user = new User({
+    email: req.body.em,
+    username: req.body.un,
+    password: req.body.pw
+  });
+
+  user.save(function(err){
+    if(err){
+      console.log("Could not Store User");
+    } else {
+      console.log("User Successfully Created");
+    }
+  });
+
+  res.redirect("/");
 });
