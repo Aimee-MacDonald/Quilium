@@ -30,6 +30,8 @@ app.get("/", function(req, res){
 });
 
 app.get("/entries", function(req, res){
+  res.render("read");
+  /*
   Entry.find(function(err, docs){
     if(err){
       res.redirect("/");
@@ -37,6 +39,7 @@ app.get("/entries", function(req, res){
       res.render("read", {entries: docs});
     }
   });
+  */
 });
 
 app.post("/journal", function(req, res){
@@ -78,4 +81,14 @@ app.post("/reg", function(req, res){
   });
 
   res.redirect("/");
+});
+
+app.get("/api/get-entries", function(req, res){
+  Entry.find(function(err, docs){
+    if(err){
+      console.log("Something Bad! " + err);
+    } else {
+      res.status(200).send(docs);
+    }
+  });
 });
