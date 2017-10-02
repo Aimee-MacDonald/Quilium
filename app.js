@@ -8,6 +8,8 @@ require("dotenv").config();
 var Entry = require(path.join(__dirname, "/dbmodels/entry"));
 var User = require(path.join(__dirname, "/dbmodels/user"));
 
+var api = require(path.join(__dirname, "/routes/api"));
+
 mongoose.connect(process.env.DBURL, {
   useMongoClient: true
 });
@@ -21,6 +23,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use("/api", api);
+
 app.listen(process.env.PORT, function(){
   console.log("Server Listening on Port: " + process.env.PORT);
 });
@@ -31,15 +35,6 @@ app.get("/", function(req, res){
 
 app.get("/entries", function(req, res){
   res.render("read");
-  /*
-  Entry.find(function(err, docs){
-    if(err){
-      res.redirect("/");
-    } else {
-      res.render("read", {entries: docs});
-    }
-  });
-  */
 });
 
 app.post("/journal", function(req, res){
@@ -83,12 +78,12 @@ app.post("/reg", function(req, res){
   res.redirect("/");
 });
 
-app.get("/api/get-entries", function(req, res){
-  Entry.find(function(err, docs){
-    if(err){
-      console.log("Something Bad! " + err);
-    } else {
-      res.status(200).send(docs);
-    }
-  });
+app.get("/login", function(req, res){
+  res.render("login");
+});
+
+app.post("/lgn", function(req, res){
+  console.log(req.body.em);
+  console.log(req.body.pw);
+  res.redirect("/entries");
 });
