@@ -4,6 +4,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const passport = require("passport");
+const session = require("express-session");
 
 var Entry = require(path.join(__dirname, "/dbmodels/entry"));
 var User = require(path.join(__dirname, "/dbmodels/user"));
@@ -23,6 +25,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(session({
+  secret: "4nzd9GNI24OQ",
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/api", api);
 
 app.listen(process.env.PORT, function(){
@@ -30,11 +41,19 @@ app.listen(process.env.PORT, function(){
 });
 
 app.get("/", function(req, res){
-  res.render("index");
+  if(req.isAuthenticated()){
+    res.render("index");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/entries", function(req, res){
-  res.render("read");
+  if(req.isAuthenticated()){
+    res.render("read");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.post("/journal", function(req, res){
@@ -85,5 +104,16 @@ app.get("/login", function(req, res){
 app.post("/lgn", function(req, res){
   console.log(req.body.em);
   console.log(req.body.pw);
+  req.login(req.body.em, function(err){
+    if(err) throw err;
+  });
   res.redirect("/entries");
+});
+
+passport.serializeUser(function(uid, done){
+  done(null, uid);
+});
+
+passport.deserializeUser(function(uid, done){
+  done(null, uid);
 });

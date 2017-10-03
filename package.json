@@ -21,7 +21,9 @@
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.1",
+    "express-session": "^1.15.6",
     "mongoose": "^4.11.14",
+    "passport": "^0.4.0",
     "pug": "^2.0.0-rc.4"
   }
 }
