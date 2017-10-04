@@ -4,7 +4,7 @@ const Entry = require(path.join(__dirname, "../dbmodels/entry"));
 const router = express.Router();
 
 router.get("/get-entries", function(req, res, next){
-  Entry.find(function(err, docs){
+  Entry.find({uid: req.session.passport.user}, function(err, docs){
     if(err){
       console.log("Something Bad! " + err);
     } else {

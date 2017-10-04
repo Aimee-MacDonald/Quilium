@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const passport = require("passport");
 const session = require("express-session");
+const bcrypt = require("bcryptjs");
 
 var Entry = require(path.join(__dirname, "/dbmodels/entry"));
 var User = require(path.join(__dirname, "/dbmodels/user"));
@@ -57,22 +58,27 @@ app.get("/entries", function(req, res){
 });
 
 app.post("/journal", function(req, res){
-  var entry = new Entry({
-    username: "Aimée",
-    title: req.body.title,
-    date: Date.now(),
-    content: req.body.entry
-  });
+  if(req.isAuthenticated()){
+    var entry = new Entry({
+      uid: req.session.passport.user,
+      username: "Aimée",
+      title: req.body.title,
+      date: Date.now(),
+      content: req.body.entry
+    });
 
-  entry.save(function(err){
-    if(err){
-      console.log("Could not Save the Entry");
-    } else {
-      console.log("Entry Saved Successfully");
-    }
-  });
+    entry.save(function(err){
+      if(err){
+        console.log("Could not Save the Entry");
+      } else {
+        console.log("Entry Saved Successfully");
+      }
+    });
 
-  res.redirect("/entries");
+    res.redirect("/entries");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/register", function(req, res){
@@ -102,12 +108,26 @@ app.get("/login", function(req, res){
 });
 
 app.post("/lgn", function(req, res){
-  console.log(req.body.em);
-  console.log(req.body.pw);
-  req.login(req.body.em, function(err){
+  User.find({email: req.body.em}, function(err, docs){
     if(err) throw err;
+
+    if(docs.length > 0){
+      bcrypt.compare(req.body.pw, docs[0].password, function(err, resp){
+        if(err) throw err;
+
+        if(resp){
+          req.login(docs[0]._id, function(err){
+            if(err) throw err;
+          });
+          res.redirect("/entries");
+        } else {
+          res.redirect("/login");
+        }
+      });
+    } else {
+      res.redirect("/login");
+    }
   });
-  res.redirect("/entries");
 });
 
 passport.serializeUser(function(uid, done){
