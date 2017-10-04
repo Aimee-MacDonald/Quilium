@@ -18,8 +18,6 @@ body {
   display: flex;
   flex-flow: nowrap column;
   align-items: center;
-  width: 800px;
-  height: 800px;
 }
 
 #container form #heading {
