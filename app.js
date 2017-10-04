@@ -61,7 +61,6 @@ app.post("/journal", function(req, res){
   if(req.isAuthenticated()){
     var entry = new Entry({
       uid: req.session.passport.user,
-      username: "Aimée",
       title: req.body.title,
       date: Date.now(),
       content: req.body.entry
