@@ -10,17 +10,20 @@ request.onload = function(){
       var entries = JSON.parse(request.responseText);
       entries = entries.reverse();
       for(var i = 0; i < entries.length; i++){
+        var dt = new Date(parseInt(entries[i].date));
+        dt = dt.toDateString().split(' ');
+        dt.shift();
+        dt = dt.join(" / ");
         var entry = `
           <div id="entry">
             <div id="heading">
               <h1>` + entries[i].title + `</h1>
-              <h1>` + entries[i].date + `</h1>
+              <h1>` + dt + `</h1>
             </div>
             <pre>` + entries[i].content + `</pre>
           </div>
         `;
 
-        console.log(entries[i].content);
         el_container.innerHTML += entry;
       }
     } else {
