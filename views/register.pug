@@ -4,12 +4,12 @@ head
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, initial-scale=1.0")
   meta(http-equiv="X-UA-Compatible", content="ie=edge")
-  link(rel="stylesheet", href="styles/register.css")
+  link(rel="stylesheet", href="/styles/register.css")
   title Quilium
 body
   #container
     h1 Register
-    form(action="/reg", method="post")
+    form(action="/auth/register", method="post")
       input(type="text", placeholder="Email", name="em", required)
       input(type="text", placeholder="Username", name="un", required)
       input(type="password", placeholder="Password", name="pw", required)
