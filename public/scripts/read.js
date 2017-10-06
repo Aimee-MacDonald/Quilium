@@ -18,8 +18,8 @@ request.onload = function(){
         var entry = `
           <div id="entry">
             <div id="heading">
-              <h1>` + entries[i].title + `</h1>
-              <h1>` + dt + `</h1>
+              <p>` + entries[i].title + `</p>
+              <p>` + dt + `</p>
             </div>
             <pre>` + entries[i].content + `</pre>
           </div>
