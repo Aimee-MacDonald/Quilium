@@ -3,8 +3,11 @@
   padding: 0;
 }
 
-#container {
+body {
   background-color: black;
+}
+
+#container {
   color: orange;
   height: 100vh;
   display: flex;
@@ -32,4 +35,11 @@
   white-space: pre-line;
   font-weight: bold;
   font-size: 1.2em;
+}
+
+@media (min-width: 400px) {
+  #heading {
+    display: flex;
+    justify-content: space-between;
+  }
 }

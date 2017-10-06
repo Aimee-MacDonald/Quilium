@@ -17,14 +17,14 @@ router.post("/register", function(req, res){
   });
 
   user.save(function(err){
-    if(err){
-      console.log("Could not Store User");
-    } else {
-      console.log("User Successfully Created");
-    }
-  });
+    if(err) throw err;
 
-  res.redirect("/");
+    req.login(user._id, function(err){
+      if(err) throw err;
+    });
+
+    res.redirect("/");
+  });
 });
 
 router.get("/login", function(req, res, next){
