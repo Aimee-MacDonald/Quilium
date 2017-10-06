@@ -9,9 +9,8 @@ head
 body
   #container
     form(action="journal/entry" method="post")
-      #heading
-        input(id="title", placeholder="Title", name="title", required)
-        p(id="entry-date") 1 October 2017
+      input(id="title", placeholder="Title", name="title", required)
+      p(id="entry-date") 1 October 2017
       textarea(placeholder="Dear Diary...", name="entry", required)
       button(type="submit") Save
 script(src="/scripts/index.js", charset="utf-8")

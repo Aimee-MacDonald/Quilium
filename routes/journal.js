@@ -3,8 +3,6 @@ const router = express.Router();
 const path = require("path");
 const Entry = require(path.join(__dirname, "../dbmodels/entry"));
 
-
-
 router.get("/entries", function(req, res, next){
   if(req.isAuthenticated()){
     res.render("read");
