@@ -3,30 +3,45 @@
   padding: 0;
 }
 
-body {
-  background-color: pink;
-}
-
 #container {
-  background-color: green;
+  background: black;
+  color: orange;
   height: 100vh;
   display: flex;
+  flex-flow: nowrap column;
   justify-content: center;
   align-items: center;
-  flex-flow: nowrap column;
 }
 
 #container form {
   display: flex;
   flex-flow: nowrap column;
+  align-items: center;
 }
 
 #container form input {
+  background: black;
+  color: orange;
   padding: 10px;
-  margin: 5px;
+  margin: 10px;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 30px;
+  border-color: orange;
 }
 
 #container form button {
-  padding: 10px;
-  margin: 20px;
+  background: black;
+  color: orange;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 30px;
+  border-color: orange;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#container form button:hover {
+  background: orange;
+  color: black;
 }
