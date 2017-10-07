@@ -11,22 +11,37 @@ body
   display: flex
   flex-flow: nowrap column
   align-items: center
-  #entry
-    margin: 10px
-    border: 2px solid orange
-    max-width: 800px
-    #heading
-      padding: 10px
-      border-bottom: 2px solid orange
-    pre
-      padding: 10px
+  #header
+    display: flex
+    position: fixed
+    width: 100%
+    justify-content: flex-end
+    .navButton
+      background-color: black
+      color: orange
+      margin: 5px
+      padding: 5px
+      &:hover
+        background-color: orange
+        color: black
+  #entries
+    padding-top: 20px
+    #entry
       margin: 10px
-      border-radius: 5px
-      background-color: lightgreen
-      color: black
-      white-space: pre-line
-      font-weight: bold
-      font-size: 1.2em
+      border: 2px solid orange
+      max-width: 800px
+      #heading
+        padding: 10px
+        border-bottom: 2px solid orange
+      pre
+        padding: 10px
+        margin: 10px
+        border-radius: 5px
+        background-color: lightgreen
+        color: black
+        white-space: pre-line
+        font-weight: bold
+        font-size: 1.2em
 
 @media(min-width: 400px)
   #heading

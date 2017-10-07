@@ -1,5 +1,5 @@
 
-var el_container = document.getElementById("container");
+var el_container = document.getElementById("entries");
 
 var request = new XMLHttpRequest();
 

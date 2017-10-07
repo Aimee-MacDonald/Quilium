@@ -15,18 +15,41 @@ body {
   align-items: center;
 }
 
-#container #entry {
+#container #header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+#container #header .navButton {
+  background-color: black;
+  color: orange;
+  margin: 5px;
+  padding: 5px;
+}
+
+#container #header .navButton:hover {
+  background-color: orange;
+  color: black;
+}
+
+#container #entries {
+  padding-top: 20px;
+}
+
+#container #entries #entry {
   margin: 10px;
   border: 2px solid orange;
   max-width: 800px;
 }
 
-#container #entry #heading {
+#container #entries #entry #heading {
   padding: 10px;
   border-bottom: 2px solid orange;
 }
 
-#container #entry pre {
+#container #entries #entry pre {
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
