@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const passport = require("passport");
 const session = require("express-session");
+const csurf = require("csurf");
 
 var Entry = require(path.join(__dirname, "/dbmodels/entry"));
 var User = require(path.join(__dirname, "/dbmodels/user"));
@@ -35,6 +36,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(csurf());
+
 app.use("/api", api);
 app.use("/auth", auth);
 app.use("/journal", journal);
@@ -45,7 +48,7 @@ app.listen(process.env.PORT, function(){
 
 app.get("/", function(req, res){
   if(req.isAuthenticated()){
-    res.render("index");
+    res.render("index", {csrfToken: req.csrfToken()});
   } else {
     res.redirect("/auth/login");
   }

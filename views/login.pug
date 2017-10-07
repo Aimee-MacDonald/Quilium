@@ -12,4 +12,5 @@ body
     form(action="/auth/login", method="post")
       input(type="text", placeholder="Email", name="em")
       input(type="password", placeholder="Password", name="pw")
+      input(type="hidden", name="_csrf", value= csrfToken)
       button(type="submit") Log in

@@ -2,13 +2,8 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const bcrypt = require("bcryptjs");
-const csurf = require("csurf");
 
 const User = require(path.join(__dirname, "../dbmodels/user"));
-
-const csrfProtection = csurf();
-router.use(csrfProtection);
-
 
 router.get("/register", function(req, res){
   res.render("register", {csrfToken: req.csrfToken()});
@@ -33,7 +28,7 @@ router.post("/register", function(req, res){
 });
 
 router.get("/login", function(req, res, next){
-  res.render("login");
+  res.render("login", {csrfToken: req.csrfToken()});
 });
 
 router.post("/login", function(req, res, next){
