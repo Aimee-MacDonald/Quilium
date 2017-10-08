@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 const User = require(path.join(__dirname, "../dbmodels/user"));
 
 router.get("/register", function(req, res){
-  res.render("register", {csrfToken: req.csrfToken()});
+  res.render("auth/register", {csrfToken: req.csrfToken()});
 });
 
 router.post("/register", function(req, res){
@@ -28,7 +28,7 @@ router.post("/register", function(req, res){
 });
 
 router.get("/login", function(req, res, next){
-  res.render("login", {csrfToken: req.csrfToken()});
+  res.render("auth/login", {csrfToken: req.csrfToken()});
 });
 
 router.post("/login", function(req, res, next){
@@ -43,7 +43,7 @@ router.post("/login", function(req, res, next){
           req.login(docs[0]._id, function(err){
             if(err) throw err;
           });
-          res.redirect("/journal/entries");
+          res.redirect("/journal/read");
         } else {
           res.redirect("/auth/login");
         }

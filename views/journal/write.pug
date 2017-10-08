@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  meta(http-equiv="X-UA-Compatible", content="ie=edge")
+  link(rel="stylesheet", href="/styles/index.css")
+  title Quilium
+body
+  #container
+    #header
+      a(href="/journal/read" class="navButton") Read
+      a(href="/auth/logout" class="navButton") Log out
+    form(action="journal/entry" method="post")
+      input(id="title", placeholder="Title", name="title", required)
+      p(id="entry-date") Date
+      textarea(placeholder="Dear Diary...", name="entry", required)
+      input(type="hidden", name="_csrf", value= csrfToken)
+      button(type="submit") Save
+script(src="/scripts/index.js", charset="utf-8")

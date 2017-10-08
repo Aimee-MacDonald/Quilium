@@ -3,9 +3,17 @@ const router = express.Router();
 const path = require("path");
 const Entry = require(path.join(__dirname, "../dbmodels/entry"));
 
-router.get("/entries", function(req, res, next){
+router.get("/write", function(req, res, next){
   if(req.isAuthenticated()){
-    res.render("read");
+    res.render("journal/write");
+  } else {
+    res.redirect("/auth/login");
+  }
+});
+
+router.get("/read", function(req, res, next){
+  if(req.isAuthenticated()){
+    res.render("journal/read");
   } else {
     res.redirect("/auth/login");
   }
