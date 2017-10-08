@@ -47,11 +47,7 @@ app.listen(process.env.PORT, function(){
 });
 
 app.get("/", function(req, res){
-  if(req.isAuthenticated()){
-    res.render("index", {csrfToken: req.csrfToken()});
-  } else {
-    res.redirect("/auth/login");
-  }
+  res.render("index");
 });
 
 passport.serializeUser(function(uid, done){
