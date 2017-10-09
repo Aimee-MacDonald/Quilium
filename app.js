@@ -47,7 +47,7 @@ app.listen(process.env.PORT, function(){
 });
 
 app.get("/", function(req, res){
-  res.render("index");
+  res.render("index", {loginflag: req.isAuthenticated()});
 });
 
 passport.serializeUser(function(uid, done){

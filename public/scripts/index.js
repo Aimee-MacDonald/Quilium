@@ -1,8 +1,9 @@
-var el_date = document.getElementById("entry-date");
+const headerEl = document.getElementById("header");
 
-var dt = new Date();
-dt = dt.toDateString().split(' ');
-dt.shift();
-dt = dt.join(" / ");
+var loginFlag = document.getElementById("loginflag").innerHTML;
 
-el_date.innerHTML = dt;
+if(loginFlag === "true"){
+  headerEl.innerHTML = `<p>Logged In!</p>`;
+} else {
+  headerEl.innerHTML = `<p>Logged Out</p>`;
+}
