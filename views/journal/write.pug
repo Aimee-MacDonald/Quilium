@@ -11,7 +11,7 @@ body
     #header
       a(href="/journal/read" class="navButton") Read
       a(href="/auth/logout" class="navButton") Log out
-    form(action="journal/entry" method="post")
+    form(action="entry" method="post")
       input(id="title", placeholder="Title", name="title", required)
       p(id="entry-date") Date
       textarea(placeholder="Dear Diary...", name="entry", required)

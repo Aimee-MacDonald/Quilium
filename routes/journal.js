@@ -5,7 +5,7 @@ const Entry = require(path.join(__dirname, "../dbmodels/entry"));
 
 router.get("/write", function(req, res, next){
   if(req.isAuthenticated()){
-    res.render("journal/write");
+    res.render("journal/write", {csrfToken: req.csrfToken()});
   } else {
     res.redirect("/auth/login");
   }
@@ -36,7 +36,7 @@ router.post("/entry", function(req, res, next){
       }
     });
 
-    res.redirect("/journal/entries");
+    res.redirect("/journal/read");
   } else {
     res.redirect("/auth/login");
   }
